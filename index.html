@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#039be5" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="/apple_icon.png">
+    <title id="judul">Champions League Match</title>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/dist/CLM.bundle.js"></script>
+    <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+</head>
+
+<body>
+    <nav class="light-blue darken-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo" id="logo-container">
+                CLM
+            </a>
+            <a href="#" class="sidenav-trigger" data-target="nav-mobile">
+                <i class="fas fa-bars"></i>
+            </a>
+
+            <ul class="topnav right hide-on-med-and-down"></ul>
+            <ul class="sidenav" id="nav-mobile"></ul>
+        </div>
+    </nav>
+
+    <div class="container" id="isi">
+        <!-- AJAX -->
+    </div>
+    <div id="loading" class="modal" style="width: 240px;">
+        <div class="modal-content" style="display: flex;flex-direction: column;">
+            <img src="/src/spinner.svg" style="height: 150px;margin: 5px auto;" class="responsive-img" alt="">
+            <h4 class="center-align">LOADING</h4>
+        </div>
+    </div>
+    <div id="info" class="modal" style="width: 85%;">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12" style="display: flex;flex-direction: column;">
+                    <img id="crest" src="" alt="" class="responsive-img" style="height: 150px;margin:auto">
+                    <h5 id="clubName" class="center-align">Club info</h5>
+                </div>
+                <div class="col s12">
+                    <h6 class="center-align">
+                        <i class="fas fa-users" style="margin-right: 5px;margin-top: 20px;"></i> SQUAD
+                    </h6>
+                    <div id="squad" class="row" style="margin-top: 10px;">
+                        <!-- AJAX -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="btnInfo" class="waves-effect orange btn">
+                <i class="fas fa-star" style="margin-right: 5px;font-size: small;"></i>
+                FAVOURITE
+            </button>
+            <button type="button" id="btnInfoRemove" class="waves-effect red btn" style="display: none;">
+                <i class="fas fa-ban" style="margin-right: 5px;font-size: small;"></i>
+                REMOVE
+            </button>
+            <a href="#!" class="modal-close waves-effect blue-text btn-flat">OK</a>
+        </div>
+    </div>
+</body>
+
+</html>

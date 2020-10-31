@@ -1,0 +1,83 @@
+@media only screen and (min-width: 601px) {
+    .container[tabbed] {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 601px) {
+    .truncate-mod {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .container[tabbed] {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .truncate-mod {
+        overflow: visible;
+    }
+    .container[tabbed] {
+        width: 85%;
+    }
+}
+
+.text-dummy {
+    width: 15px;
+    height: 21.6px;
+    border-radius: 5px;
+    background-color: grey;
+}
+
+#top-tab>.col {
+    padding: 0;
+}
+
+#top-tab {
+    height: calc(100vh - 48px);
+}
+
+#top-tab> :nth-child(2)>div {
+    overflow-y: scroll;
+    padding-bottom: 1rem;
+}
+
+#top-tab .tabs-content {
+    height: 100%;
+}
+
+
+/* CUSTOM TAB */
+
+.tabs .tab a {
+    color: #039be5;
+}
+
+.tabs .tab a:hover {
+    background-color: #eee;
+    color: #039be5;
+}
+
+.tabs .tab a:focus {
+    background-color: #eee;
+    color: #039be5;
+}
+
+.tabs .tab a.active {
+    background-color: #eee;
+    color: #039be5;
+}
+
+.tabs .indicator {
+    background-color: #039be5;
+}
+
+
+/* LOADING */
+
+#loading {
+    transform: translateY(50%) !important;
+}

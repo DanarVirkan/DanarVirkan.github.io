@@ -1,0 +1,29 @@
+{
+    "name": "Champions League Match",
+    "gcm_sender_id": "206503121855",
+    "short_name": "CLM",
+    "description": "Aplikasi Informasi Champions League",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#039be5",
+    "icons": [{
+            "src": "/icon/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon/icon-256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
