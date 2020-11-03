@@ -81,3 +81,34 @@
 #loading {
     transform: translateY(50%) !important;
 }
+
+
+/* COLLAPSIBLE */
+
+.collapsible-body {
+    padding: 5px;
+}
+
+
+/* STANDINGS */
+
+.mini-standings td:not(.head) {
+    height: 75px;
+}
+
+.standings-club {
+    height: 75px;
+    display: flex !important;
+}
+
+.standings-name {
+    margin-left: 10px;
+    text-align: left !important;
+    max-width: 80px;
+    font-weight: normal !important;
+}
+
+.crest {
+    height: 40px;
+    margin: auto;
+}

@@ -7,7 +7,7 @@ function renderClub(data) {
     data.forEach((i, index) => {
         isi += `
             <div class="col s6 m3">
-                <div index="${index}" club class="card hoverable">
+                <div index="${index}" club class="card hoverable" style="cursor:pointer">
                     <div class="card-content" style="padding:15px;display:flex">
                         <img src="${source(i.ID)}" style="height:100px;margin:auto" class="responsive-img">
                     </div>
@@ -128,6 +128,7 @@ function favouriteButton(code, obj = null) {
         button.one('click', function() {
             saveClub(obj);
             $(this).attr('disabled', 'disabled');
+            M.toast({ html: 'Saved to Favourites', classes: 'rounded' });
         });
     } else {
         // REMOVE
@@ -136,6 +137,7 @@ function favouriteButton(code, obj = null) {
 
         remove.one('click', function() {
             removeClub(obj);
+            M.toast({ html: 'Removed from Favourites', classes: 'rounded' });
         });
     }
 }

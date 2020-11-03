@@ -47,6 +47,7 @@ function loadStandings() {
 function renderStandings(standings) {
     let table = '';
     let char = [];
+    let collapsible = '';
     //Table
     for (let i = 0; i < standings.length; i += 3) {
         char[0] = 'A';
@@ -60,6 +61,7 @@ function renderStandings(standings) {
         //ROW
         let row = '';
         let group = standings[i].table;
+        collapsible += collStandings(group, char[i]);
         for (let j = 0; j < group.length; j++) {
             row += `
                     <tr id="${group[j].team.id}" style="cursor:pointer">
@@ -101,6 +103,7 @@ function renderStandings(standings) {
                 `;
     }
     $('#isiStandings').html(table);
+    $('#miniStandings').html(collapsible);
     $('#loading').modal('close');
     clubListener();
 }
@@ -121,6 +124,119 @@ function catchStandings() {
                 `);
     $('#loading').modal('close');
     refreshPage('standings');
+}
+
+function collStandings(obj, group) {
+    return `<li>
+                <div class="collapsible-header">
+                    Group ${group}
+                </div>
+                <div class="collapsible-body">
+                    ${clubStandings(obj)}
+                </div>
+            </li>
+    `;
+}
+
+function tableHead(obj) {
+    let head = '';
+    obj.forEach(i => {
+        head += `
+        <th clubId="${i.id}" class="standings-club">
+            <img src="${i.src}" alt="" class="crest">
+            <p class="standings-name truncate">${i.name}</p>
+        </th>
+        `;
+    });
+    return head;
+}
+
+function tableBody(obj) {
+    let body = '';
+    obj.forEach(i => {
+        body += `
+        <td class="valign-wrapper">
+            <p class="center-align">
+                ${i}
+            </p>
+        </td>
+        `;
+    });
+    return body;
+}
+
+
+function clubStandings(obj) {
+    let converter = {
+        head: [],
+        mp: [],
+        w: [],
+        d: [],
+        l: [],
+        gf: [],
+        ga: [],
+        gd: [],
+        pts: []
+    }
+    obj.forEach(i => {
+        converter.head.push({
+            id: i.team.id,
+            name: i.team.name,
+            src: i.team.crestUrl
+        });
+        converter.mp.push(i.playedGames);
+        converter.w.push(i.won);
+        converter.d.push(i.draw);
+        converter.l.push(i.lost);
+        converter.gf.push(i.goalsFor);
+        converter.ga.push(i.goalsAgainst);
+        converter.gd.push(i.goalDifference);
+        converter.pts.push(i.points);
+    });
+    return `
+        <table class="responsive-table mini-standings">
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Club</th>
+                    ${tableHead(converter.head)}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="head">MP</td>
+                    ${tableBody(converter.mp)}
+                </tr>
+                <tr>
+                    <td class="head">W</td>
+                    ${tableBody(converter.w)}
+                </tr>
+                <tr>
+                    <td class="head">D</td>
+                    ${tableBody(converter.d)}
+                </tr>
+                <tr>
+                    <td class="head">L</td>
+                    ${tableBody(converter.l)}
+                </tr>
+                <tr>
+                    <td class="head">GF</td>
+                    ${tableBody(converter.gf)}
+                </tr>
+                <tr>
+                    <td class="head">GA</td>
+                    ${tableBody(converter.ga)}
+                </tr>
+                <tr>
+                    <td class="head">GD</td>
+                    ${tableBody(converter.gd)}
+                </tr>
+                <tr>
+                    <td class="head">Pts</td>
+                    ${tableBody(converter.pts)}
+                </tr>
+            </tbody>
+        </table>
+    `;
 }
 
 function teamInfo(team) {
@@ -258,7 +374,10 @@ function matchInfo(match) {
 
 // ================================================================================================================================== //
 function clubListener() {
-    $(`tr`).click(function() {
+    $(`th[clubId]`).click(function() {
+        clubInfo(parseInt($(this).attr('clubId')));
+    });
+    $(`tr[id]`).click(function() {
         clubInfo(parseInt($(this).attr('id')));
     });
     $(`div[id='club']`).click(function() {
@@ -270,7 +389,6 @@ function clubInfo(id) {
     $('#loading').modal('open');
     if ("caches" in window) {
         caches.match(BASE_URL + 'teams/' + id).then(function(res) {
-            console.log(res);
             if (res) {
                 res.json().then(function(data) {
                     renderClubInfo(data, id);

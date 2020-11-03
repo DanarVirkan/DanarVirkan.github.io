@@ -69,6 +69,7 @@ function loadPage(loc) {
                     break;
                 case 'standings':
                     loadStandings();
+                    $('.collapsible').collapsible();
                     break;
                 case 'favourites':
                     getClub();
